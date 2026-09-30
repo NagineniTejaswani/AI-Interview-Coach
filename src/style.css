@@ -414,14 +414,18 @@ button.compact-reset-btn:hover {
     justify-content: flex-start !important;
 }
 
-/* ---- Floating Top-Center Status Badge (prevents scrollbar conflict) ---- */
-.status-tracker,
-.toast-wrap,
-.toast-container,
-.generating,
-.pending,
-.loading,
-.progress-text {
+/* ---- Floating Status Badge & Toast (only visible when actively processing) ---- */
+.status-tracker:empty,
+.toast-wrap:empty,
+.toast-container:empty,
+.progress-text:empty,
+.generating:empty {
+    display: none !important;
+}
+
+.status-tracker:not(:empty),
+.toast-wrap:not(:empty),
+.toast-container:not(:empty) {
     position: absolute !important;
     top: 6px !important;
     left: 50% !important;
@@ -443,6 +447,15 @@ button.compact-reset-btn:hover {
     backdrop-filter: blur(8px) !important;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
 }
+
+/* ---- Pending / Typing Indicator inside chat bubble ---- */
+.chatbot-container .pending,
+[data-testid="chatbot"] .pending {
+    display: inline-flex !important;
+    align-items: center !important;
+    opacity: 0.85 !important;
+}
+
 
 
 /* ---- The ONE single scrollable container for chat messages ---- */
