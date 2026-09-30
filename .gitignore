@@ -1,0 +1,21 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Environment secrets
+.env
+
+# Personal data / test artifacts (not for source control)
+src/data/progress.json
+src/data/resume.pdf
+src/data/job_description.txt
+
+# Dev/scratch scripts
+src/scripts/test_groq.py

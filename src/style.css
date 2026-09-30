@@ -1,0 +1,555 @@
+/* ==========================================================================
+   AI Interview Coach — Emerald × Charcoal Premium Theme
+   ========================================================================== */
+
+/* ---- Google Fonts ---- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ---- Design Tokens ---- */
+:root {
+    --bg-deep: #0d1117;
+    --bg-surface: #161b27;
+    --bg-card: rgba(255, 255, 255, 0.04);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --teal-400: #2dd4bf;
+    --teal-500: #14b8a6;
+    --teal-600: #0d9488;
+    --accent-glow: rgba(20, 184, 166, 0.18);
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+    --text-faint: #64748b;
+    --radius-card: 12px;
+    --radius-pill: 9999px;
+}
+
+/* ---- Reset & Viewport ---- */
+html,
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    overflow: hidden !important;
+    scrollbar-gutter: stable;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 13px !important;
+    background: var(--bg-deep) !important;
+    color: var(--text-primary) !important;
+    scroll-behavior: smooth !important;
+}
+
+/* ---- Hide Gradio chrome ---- */
+footer,
+.built-with,
+.show-api {
+    display: none !important;
+}
+
+/* ---- Full-width container ---- */
+.gradio-container {
+    height: 100vh !important;
+    max-height: 100vh !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 14px 22px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    background: var(--bg-deep) !important;
+}
+
+/* ---- Scrollbars ---- */
+*::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.5);
+    border-radius: var(--radius-pill);
+}
+
+*::-webkit-scrollbar-thumb {
+    background: rgba(45, 212, 191, 0.35);
+    border-radius: var(--radius-pill);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: rgba(45, 212, 191, 0.65);
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(45, 212, 191, 0.35) rgba(15, 23, 42, 0.5);
+}
+
+/* ==========================================================================
+   1. Setup Screen
+   ========================================================================== */
+.setup-screen {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: calc(100vh - 28px) !important;
+    flex: 1 1 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    padding-bottom: 10px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+/* ---- Header block ---- */
+.setup-header {
+    text-align: center;
+    margin-bottom: 12px;
+    padding: 12px 0 6px;
+    flex: 0 0 auto !important;
+}
+
+.setup-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    background: rgba(45, 212, 191, 0.12);
+    color: #2dd4bf !important;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(45, 212, 191, 0.35);
+    margin-bottom: 8px;
+}
+
+@keyframes titleShimmer {
+    0% {
+        background-position: 0% 50%;
+        opacity: 0.88;
+        filter: drop-shadow(0 0 8px rgba(45, 212, 191, 0.3));
+    }
+
+    50% {
+        background-position: 100% 50%;
+        opacity: 1;
+        filter: drop-shadow(0 0 24px rgba(56, 189, 248, 0.75));
+    }
+
+    100% {
+        background-position: 0% 50%;
+        opacity: 0.88;
+        filter: drop-shadow(0 0 8px rgba(45, 212, 191, 0.3));
+    }
+}
+
+.setup-title,
+.setup-header h1,
+.prose .setup-title {
+    font-size: 28px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.5px !important;
+    margin: 0 0 6px 0 !important;
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #ffffff 0%, #2dd4bf 35%, #38bdf8 70%, #a855f7 100%) !important;
+    background-size: 200% auto !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    animation: titleShimmer 4s ease-in-out infinite !important;
+}
+
+.setup-subtitle {
+    font-size: 13.5px !important;
+    color: #cbd5e1 !important;
+    margin: 0 !important;
+    line-height: 1.5 !important;
+}
+
+/* ---- Labels ---- */
+label,
+.gr-form label,
+.block label span,
+.wrap label span,
+[class*="label"] span {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: var(--teal-400) !important;
+    background: transparent !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+}
+
+/* ---- Input / Textarea base ---- */
+input,
+textarea,
+.gr-input,
+.gr-textbox {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid var(--border-subtle) !important;
+    color: var(--text-primary) !important;
+    border-radius: 10px !important;
+    font-size: 13px !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--teal-500) !important;
+    box-shadow: 0 0 0 3px var(--accent-glow) !important;
+    outline: none !important;
+}
+
+/* ---- Primary button (Start Interview, etc.) ---- */
+button.primary,
+button[variant="primary"] {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    background: linear-gradient(135deg, var(--teal-500), var(--teal-600)) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 12px 32px !important;
+    box-shadow: 0 4px 16px rgba(20, 184, 166, 0.4) !important;
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease !important;
+    letter-spacing: 0.03em !important;
+    margin-top: 10px !important;
+    flex: 0 0 auto !important;
+    min-height: 44px !important;
+}
+
+button.primary:hover,
+button[variant="primary"]:hover {
+    background: linear-gradient(135deg, var(--teal-400), var(--teal-500)) !important;
+    box-shadow: 0 6px 22px rgba(20, 184, 166, 0.55) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* ---- Setup row (file + JD side-by-side) ---- */
+.setup-row {
+    flex: 1 1 0 !important;
+    display: flex !important;
+    gap: 16px !important;
+    align-items: stretch !important;
+    margin-bottom: 8px !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.setup-row>div {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    flex: 1 1 0 !important;
+}
+
+.setup-row .gr-file {
+    height: 100% !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+
+.setup-row .jd-box,
+.jd-box {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+}
+
+.setup-row .jd-box>div,
+.setup-row .jd-box label+div,
+.setup-row .jd-box .input-container,
+.jd-box>div {
+    flex: 1 1 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    min-height: 0 !important;
+}
+
+.setup-row .jd-box textarea,
+.jd-box textarea {
+    flex: 1 1 auto !important;
+    height: 100% !important;
+    min-height: 300px !important;
+    max-height: 100% !important;
+    resize: none !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    scroll-behavior: smooth !important;
+    box-sizing: border-box !important;
+}
+
+/* ==========================================================================
+   2. Chat Screen
+   ========================================================================== */
+.chat-wrapper {
+    flex: 1 1 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: calc(100vh - 28px) !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+/* ---- Top Header Bar ---- */
+.chat-wrapper > div.chat-top-bar,
+.chat-wrapper .chat-top-bar,
+.chat-top-bar {
+    position: relative !important;
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 140px 10px 0 !important;
+    border-bottom: 1px solid var(--border-subtle) !important;
+    margin: 0 0 12px 0 !important;
+    box-sizing: border-box !important;
+}
+
+.chat-top-bar > div:first-child,
+.chat-top-bar .prose {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* ---- Chat session heading — vivid gradient ---- */
+.chat-top-bar h3,
+.chat-top-bar .prose h3 {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.2px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #ffffff !important;
+    background: linear-gradient(90deg, var(--teal-400), #818cf8) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    line-height: 1.4 !important;
+}
+
+/* ---- "Change Role" button (Pinned strictly to Top Right above border line) ---- */
+.chat-top-bar .compact-reset-btn,
+.compact-reset-btn {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: auto !important;
+    height: 32px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    z-index: 20 !important;
+}
+
+.compact-reset-btn button,
+button.compact-reset-btn {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 12px !important;
+    padding: 6px 16px !important;
+    height: 32px !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+    border-radius: var(--radius-pill) !important;
+    border: 1px solid rgba(45, 212, 191, 0.4) !important;
+    background: rgba(45, 212, 191, 0.1) !important;
+    color: var(--teal-400) !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    transition: all 0.15s ease !important;
+    box-shadow: none !important;
+}
+
+.compact-reset-btn button:hover,
+button.compact-reset-btn:hover {
+    background: rgba(45, 212, 191, 0.22) !important;
+    border-color: var(--teal-400) !important;
+    color: #ffffff !important;
+}
+
+/* ---- Chat interface container flex fill ---- */
+.chat-wrapper > .gr-chat-interface,
+.chat-wrapper .gr-chat-interface {
+    flex: 1 1 0 !important;
+    height: calc(100% - 58px) !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    overflow: hidden !important;
+}
+
+.chatbot-container,
+.chatbot-container > div,
+.chatbot-container .wrap,
+[data-testid="chatbot"],
+.generating,
+.pending,
+.loading,
+.progress-text {
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    flex: 1 1 0 !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    justify-content: flex-start !important;
+}
+
+/* ---- The ONE single scrollable container for chat messages ---- */
+.chatbot-container .message-wrap,
+.chatbot-container div.bubble-wrap,
+[data-testid="chatbot"] .message-wrap,
+[data-testid="chatbot"] .bubble-wrap {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    scroll-behavior: smooth !important;
+    overscroll-behavior: contain !important;
+    scrollbar-gutter: stable both-edges !important;
+    padding: 8px 14px !important;
+    flex: 1 1 auto !important;
+    height: 100% !important;
+    justify-content: flex-start !important;
+}
+
+/* ---- Message bubbles ---- */
+.message.bot,
+[data-testid="bot"],
+[data-testid="assistant"] {
+    border: none !important;
+    font-size: 13px !important;
+    line-height: 1.65 !important;
+}
+
+.message.user,
+[data-testid="user"] {
+    font-size: 13px !important;
+}
+
+/* ---- Markdown inside bubbles ---- */
+.message p,
+.message li,
+.message span {
+    font-size: 13px !important;
+}
+
+/* ---- Chat input ---- */
+.gr-chat-interface>div:last-child,
+.gr-chat-interface .form,
+.gr-chat-interface .gr-form,
+.gr-chat-interface .block,
+.gr-chat-interface [data-testid="textbox"],
+.gr-chat-interface .input-container,
+.gr-chat-interface .field,
+.gr-chat-interface div.wrap {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.gr-chat-interface>div:last-child {
+    padding-top: 6px !important;
+    width: 100% !important;
+    flex: 0 0 auto !important;
+}
+
+.gr-chat-interface input[type="text"],
+.gr-chat-interface textarea {
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: 20px !important;
+    padding: 9px 16px !important;
+    font-size: 13px !important;
+    line-height: 1.4 !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: var(--text-primary) !important;
+    box-shadow: none !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.gr-chat-interface input[type="text"]:focus,
+.gr-chat-interface textarea:focus {
+    border-color: var(--teal-500) !important;
+    box-shadow: 0 0 0 3px var(--accent-glow) !important;
+    outline: none !important;
+}
+
+/* ---- Chat submit button ---- */
+.gr-chat-interface button.primary,
+.gr-chat-interface button[aria-label="Submit"],
+.gr-chat-interface button.submit-button {
+    border-radius: var(--radius-pill) !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    padding: 8px 18px !important;
+}
+
+/* ---- Example prompt chips ---- */
+.gr-samples-gallery button,
+.examples-holder button {
+    border-radius: var(--radius-pill) !important;
+    font-size: 11.5px !important;
+    padding: 4px 12px !important;
+    background: rgba(45, 212, 191, 0.07) !important;
+    border: 1px solid rgba(45, 212, 191, 0.22) !important;
+    color: var(--teal-400) !important;
+    transition: all 0.15s ease !important;
+}
+
+.gr-samples-gallery button:hover,
+.examples-holder button:hover {
+    background: rgba(45, 212, 191, 0.15) !important;
+    border-color: var(--teal-400) !important;
+    color: #fff !important;
+}
+
+/* ---- File upload label ---- */
+.gr-file .file-preview-holder,
+[data-testid="file"] .label,
+.gr-file label,
+.upload-container label {
+    background: transparent !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: var(--teal-400) !important;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 640px) {
+    .gradio-container {
+        padding: 8px 12px !important;
+    }
+
+    .setup-title,
+    .setup-header h1,
+    .prose .setup-title {
+        font-size: 22px !important;
+    }
+
+    .setup-row {
+        flex-direction: column !important;
+        max-height: none !important;
+    }
+}
