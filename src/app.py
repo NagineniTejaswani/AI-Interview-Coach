@@ -48,16 +48,6 @@ JS = """
         }
       }, true);
     });
-
-    // Smooth autoscroll for chat container
-    const scrollContainers = document.querySelectorAll(
-      '[data-testid="chatbot"] .message-wrap, [data-testid="chatbot"] .bubble-wrap, [data-testid="chatbot"] > div > div, .chatbot-container .message-wrap'
-    );
-    scrollContainers.forEach(el => {
-      if (el.style.scrollBehavior !== 'smooth') {
-        el.style.scrollBehavior = 'smooth';
-      }
-    });
   };
 
   setTimeout(guard, 500);
@@ -207,12 +197,18 @@ with gr.Blocks(title="AI Interview Coach", fill_height=True) as demo:
         ]
         gr.ChatInterface(
             chat,
-            chatbot=gr.Chatbot(value=greeting, scale=1, autoscroll=True),
+            chatbot=gr.Chatbot(
+                value=greeting,
+                scale=1,
+                autoscroll=True,
+                elem_classes="coach-chatbot",  # hook for the CSS that fixes the double scrollbar
+            ),
             textbox=gr.Textbox(
                 placeholder="Type your answer or ask for feedback...",
                 container=False,
                 scale=7,
                 submit_btn="➤",
+                elem_classes="coach-input",
             ),
             additional_inputs=[session_prompt],
             examples=EXAMPLES,
@@ -241,4 +237,3 @@ if __name__ == "__main__":
         server_name=server_name,
         server_port=port,
     )
-
