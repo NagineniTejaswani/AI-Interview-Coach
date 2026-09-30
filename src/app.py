@@ -231,11 +231,14 @@ with gr.Blocks(title="AI Interview Coach", fill_height=True) as demo:
     )
 
 if __name__ == "__main__":
+    # Use 0.0.0.0 on cloud platforms (Render sets PORT), and 127.0.0.1 for local dev
+    server_name = "0.0.0.0" if "PORT" in os.environ else "127.0.0.1"
     port = int(os.getenv("PORT", 7860))
     demo.launch(
         theme=THEME,
         css=CUSTOM_CSS,
         js=JS,
-        server_name="0.0.0.0",
+        server_name=server_name,
         server_port=port,
-    )
+    )
+
