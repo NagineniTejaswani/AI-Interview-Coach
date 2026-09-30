@@ -231,4 +231,11 @@ with gr.Blocks(title="AI Interview Coach", fill_height=True) as demo:
     )
 
 if __name__ == "__main__":
-    demo.launch(theme=THEME, css=CUSTOM_CSS, js=JS)
+    port = int(os.getenv("PORT", 7860))
+    demo.launch(
+        theme=THEME,
+        css=CUSTOM_CSS,
+        js=JS,
+        server_name="0.0.0.0",
+        server_port=port,
+    )
